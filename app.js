@@ -57,7 +57,7 @@ function cardGenerator(){
         card.appendChild(back)
 
         card.addEventListener('click',(e)=>{
-            card.classList.toggle('toggle')
+            card.classList.add('toggle')
             checkTarget(e)
             if(playerLives===0){
                 setTimeout(()=>{
@@ -79,19 +79,22 @@ function checkTarget(e){
     const clickedCard=e.target;
     clickedCard.classList.add('flipped')
     const flippedCards=document.querySelectorAll('.flipped')
-
     if(flippedCards.length===2){
         if(flippedCards[0].getAttribute('name')===flippedCards[1].getAttribute('name')){
             flippedCards.forEach(card=>{
                 card.classList.remove('flipped')
                 card.style.pointerEvents='none'
-
+            })
                 const cards=document.querySelectorAll('.card')
                 for(let i=0;i<cards.length;i++){
+                    
                     winStatement=cards[i].classList.contains("toggle")
-                    if(winStatement===false) return
+                    if(winStatement===false){
+                        debugger
+                        return
+                    } 
                 }
-            })
+            
         }else{
             flippedCards.forEach(card=>{
                 card.classList.remove('flipped')
